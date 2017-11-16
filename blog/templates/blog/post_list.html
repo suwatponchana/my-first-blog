@@ -1,60 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Suwat Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div>
-        <h1><a href="/">Django Girls Blog</a></h1><br>
+{% extends 'blog/base.html' %}
 
-{#        <div class="container">#}
-{#            <table class="table table-hover table-striped">#}
-{#                <thead>#}
-{#                    <tr>#}
-{#                        <th>#}
-{#                            Title#}
-{#                        </th>#}
-{#                    </tr>#}
-{#                </thead>#}
-{#                <tbody>#}
-{#                {% for post in posts %}#}
-{#                    <tr>#}
-{#                        <td>#}
-{#                            {{ post }}#}
-{#                        </td>#}
-{#                    </tr>#}
-{#                {% endfor %}#}
-{#                </tbody>#}
-{##}
-{#            </table>#}
-{#        </div>#}
-        {% for post in posts %}
-            <div>
+{% block content  %}
+     {% for post in posts %}
+        <div class="post">
+            <div class="date">
                 <p>published: {{ post.published_date }}</p>
-                <h1><a href="#">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaksbr }}</p>
             </div>
-            <br>
-        {% endfor %}
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
 
-    </div>
-
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">My first post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    </div>
-
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">My second post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-    </div>
-
-</body>
-</html>
